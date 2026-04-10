@@ -233,5 +233,78 @@ dialog video {
   border-radius: 12px;
 }
 
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 16px 24px;
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
 
+.logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #94a3b8;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: #e2e8f0;
+}
+
+/* ===== SINGLE VIEW ===== */
+.single-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.media-wrapper {
+  background: #111827;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.media-wrapper img,
+.media-wrapper video {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.view-link {
+  display: inline-block;
+  background: #6366f1;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.view-link:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
+
+.view-link:active {
+  transform: scale(0.97);
+}
 

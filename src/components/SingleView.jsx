@@ -9,6 +9,8 @@ const SingleView = ({ item, setSelectedItem }) => {
     <dialog open>
       <h2>{item.title}</h2>
 
+      <p>Owner: {item.username}</p>
+
       <p>{item.description || 'No description'}</p>
 
       {/* MEDIA CONTENT */}

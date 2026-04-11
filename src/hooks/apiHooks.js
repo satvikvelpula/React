@@ -28,12 +28,46 @@ const useMedia = () => {
     }
   };
 
+  const postMedia = async (fileResult, inputs, token) => {
+    try {
+      const mediaData = {
+        title: inputs.title,
+        description: inputs.description,
+        filename: fileResult.data.filename,
+        media_type: fileResult.data.media_type,
+        filesize: fileResult.data.filesize,
+      };
+      
+  
+      const fetchOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+        body: JSON.stringify(mediaData),
+      };
+  
+      const response = await fetch(
+        import.meta.env.VITE_MEDIA_API + '/media',
+        fetchOptions
+      );
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getMedia();
   }, []);
 
-  return { mediaArray };
+  return { mediaArray, postMedia };
+
 };
+
 
 const useAuthentication = () => {
     const postLogin = async (inputs) => {
@@ -98,14 +132,41 @@ const postUser = async (inputs) => {
       return result;
     } catch (error) {
       console.error(error);
+      throw error;
     }
-
-    throw error;
 };
-  
-  
-  
-  
+
+const useFile = () => {
+  const postFile = async (file, token) => {
+    try {
+      const formData = new FormData();
+
+      formData.append('file', file);
+
+      const fetchOptions = {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+        body: formData,
+      };
+
+      const response = await fetch(
+        import.meta.env.VITE_UPLOAD_SERVER + '/upload',
+        fetchOptions
+      );
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { postFile };
+};
+
+export { useFile };
 export { useUser };
 export { useAuthentication };
 export { useMedia };
